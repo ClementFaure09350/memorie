@@ -1,1 +1,1 @@
-console.log("Hello, Memory Game!");
+console.log("Hello world, Memory Game!");
