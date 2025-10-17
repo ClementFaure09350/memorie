@@ -1,178 +1,161 @@
-/* --- Thème --- */
+/* L'élément racine du html => <html> */
 :root {
-    /* Plateau */
-    --background: #161d30;
-    --text: #fff;
-
-    /* Panneau victoire */
-    --win-background: #fa2d0c;
-    --win-text: #161d30;
-    
-    /* Boutons */
-    --btn-background: #161d30;
-    --btn-borders: #fff;
-    --btn-border-radius: 5px;
-    --btn-hover-borders: #fa2d0c;
-    --btn-active-background: #fff;
-    --btn-active-text: #161d30;
-    --btn-text: #fff;
-    
-    /* Cartes */
-    --card-back-url: url( './assets/back.jpg' );
-    --card-borders: #fff;
-    --card-border-radius: 5px;
+    --img-height: 233px;
+    --img-width: 150px;
+    --img-scale: .5;
+    --cards-per-row: 3;
 }
 
-
-/* --- Général --- */
+/* Toutes les balises */
 * {
+    /* bordures de la boîte */
+    border: 0;
+    /* Mode de dimensionnement sur la boîte de bordure */
     box-sizing: border-box;
-    padding: 0;
+    /* marge extérieure de la boîte */
     margin: 0;
+    /* bordure superposée qui apparaît en "focus" */
+    outline: 0;
+    /* marge intérieure de la boîte */
+    padding: 0;
 }
 
-h1,
-h2,
-h3 {
-    text-align: center;
+/* Tous les <button> */
+button {
+    /* Couleur de fond (zone du contenu + padding) */
+    background-color: transparent;
 }
 
-h1 {
-    padding: 15px;
-}
-
-h3 {
-    padding-bottom: 15px;
-}
-
+/* Tous les <body> */
 body {
-    background-color: var( --background );
-    color: var( --text );
-    display: flex;
-    flex-direction: column;
-    font-family: sans-serif;
-    font-size: 18px;
-    min-height: 100vh;
-}    
-
-    body > div {
-        align-items: flex-start;
-        display: flex;
-        flex-grow: 1;
-        justify-content: center;
-        position: relative;
-    }    
-
-
-/* --- Composants --- */
-/* -- Eléments cachés -- */
-.hidden {
-    display: none !important;
+    /* Couleur du texte */
+    color: #b99a00;
+    /* Couleur de fond */
+    background-color: #011a00;
+    /* Type de police du texte */
+    font-family: "Press Start 2P", system-ui;
+    /* Taille du texte */
+    font-size: 20px;
 }
 
+/* Tous les <h1> */
+h1 {
+    font-family: "Rubik Distressed", system-ui;
+    font-weight: 400;
+}
 
-/* -- Boutons -- */
-.btn {
-    background-color: var(--btn-background);
-    border: 2px solid var(--btn-borders);
-    border-radius: var( --btn-border-radius );
-    color: var( --btn-text );
-    cursor: pointer;
-    padding: 5px 3px;
+/* Tous les <header> */
+header {
+    /* Gére la disposition des "enfants-flex" perpendiculairement au "fil" */
+    align-items: center;
+    /* Activer le système flexbox sur <header> qui devient "parent-flex" */
+    display: flex;
+    /* Gére l'orientation du "fil" */
+    flex-direction: column;
+    /* Gére la gouttière (espace de séparation) entre les "enfants flex" */
+    gap: 10px;
+    padding: 20px;
+}
+
+main {
+    /* valeurs: haut droite (bas = haut) (gauche = droite) */
+    padding: 0 20px;
+}
+
+/* Tous éléments qui sont directement dans <element class="score"> */
+.scores > * {
+    /* Gére l'alignement vertical d'un élément inline par rapport au texte aux inlines voisins */
     vertical-align: middle;
 }
 
-    /* Survol / Cliqué */
-    .btn:hover,
-    .btn:active {
-        border-color: var( --btn-hover-borders );
-    }
-
-    /* Cliqué */
-    .btn:active {
-        background-color: var( --btn-active-background );
-        color: var( --btn-active-text );
-    }
-
-
-/* -- Panneau victoire -- */
-#win {
-    align-items: center;
-    background-color: var( --win-background );
-    color: var( --win-text );
-    display: flex;
-    height: 100%;
-    justify-content: center;
-    position: absolute;
-    text-align: center;
-    width: 100%;
-    z-index: 20;
+/* LE <element id="current-score"> */
+#current-score {
+    color: #0f0;
+    /*
+        "em" = 1 cadratin (taille du carractère d'imprimerie)
+        C'est un multiplicateur de la dernière taille en pixels donnée au texte
+    */
+    font-size: 2em;
 }
 
-    /* Titre */
-    #win .title {
-        font-size: 128px;
-    }
-
-
-/* -- Grille de cartes -- */
 #deck {
-    align-items: flex-start;
     display: flex;
-    flex: 0 0 800px;
+    /* Active le retour à la ligne des enfants flex */
     flex-wrap: wrap;
-    position: relative;
-    z-index: 10;
+    gap: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    width: calc(
+        ( 20px * ( var(--cards-per-row) - 1 ) ) /* Nombre gaps */
+        + ( 2px * 2 * var(--cards-per-row) ) /* Total des borders */
+        + ( var(--img-width) * var(--img-scale) * var(--cards-per-row) ) /* Total des images */
+    );
 }
 
 /* -- Cartes -- */
 .card {
-    flex: 0 0 160px;
-    padding: 5px;
+    /* bordures */
+    border: 2px solid #0f0;
+    /* coins arrondis */
+    border-radius: 3px;
     position: relative;
 }
 
-    /* Éléments internes */
-    .card > div {
-        background-size: cover;
-        border: 2px solid var( --card-borders );
-        border-radius: var( --card-border-radius );
-        cursor: grab;
-        display: block;
-        height: 150px;
-        transition: transform .3s, z-index .3s;
-    }
-
-/* - Dos de carte - */
-.card-back {
-    background: var(--card-back-url);
-    position: relative;
-    z-index: 2;
-    transform: rotateY(0);
-}
-
-    /* Cliqué */
-    .card-back:active {
-        cursor: grabbing;
-    }
-
-    /* Retourné */
-    .flipped .card-back {
+    .card.flipped {
+        /* applique une tranformation visuelle qui n'affecte pas les éléments alentours */
         transform: rotateY(.5turn);
-        z-index: 1;
     }
 
-/* - Face de carte - */
+/* Version alternative : Tous les éléments dont l'attibut "class" commence par "card-"
+[class^="card-"] 
+*/
+/* Tous les <div> enfants directs de <element class="card"> */
+.card > div {
+    /* hauteur fixe */
+    height: calc( var(--img-height) * var(--img-scale) );
+    /* largeur fixe */
+    width: calc( var(--img-width) * var(--img-scale));
+    background-size: calc( var(--img-width) * var(--img-scale)) calc( var(--img-height) * var(--img-scale) );
+}
+
+.card-back {
+    background: #008000 url('img/back.webp') center center no-repeat;
+    /* Changement du statut de positionnement */
+    position: relative;
+    /* Ordre du calque de positionnement (1 = derrière, plus = devant) */
+    z-index: 2;
+}
+
 .card-img {
-    top: 5px;
+    background: #008000 center center no-repeat;
+    /* Espace entre bord gauche de l'élément et celui de son élément de référence */
+    left: 0;
+    
     position: absolute;
+    /* Espace entre bord gauche de l'élément et celui de son élément de référence */
+    top: 0;
     transform: rotateY(.5turn);
-    width: calc( 100% - 10px );
     z-index: 1;
 }
 
-    /* Retournée */
-    .flipped .card-img {
-        transform: rotateY(0);
-        z-index: 2;
+    .card.flipped .card-img {
+        z-index: 3;
     }
+
+
+/* -- Responsive -- */
+/* - Écrans à partir de 992px de large (desktop) - */
+@media (min-width: 992px) {
+    :root {
+        --img-scale: .9;
+        --cards-per-row: 6;
+    }
+}
+
+/* - Écrans à partir de 1400px de large (desktop XXL) - */
+@media (min-width: 1400px) {
+    :root {
+        --img-scale: 1;
+        --cards-per-row: 8;
+    }
+}

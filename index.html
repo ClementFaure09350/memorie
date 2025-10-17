@@ -1,32 +1,156 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L'IDEM Memory</title>
-
+    
+    <!-- Polices Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rubik+Distressed&display=swap" >
+    
     <link rel="stylesheet" href="style.css">
+
+    <title>Memory Game</title>
 </head>
 <body>
-    <h1>L'IDEM Memory</h1>
-    <h2>Score: <span id="score"></span> coups</h2>
-    <h3>Record: <span id="highscore"></span> <button type="button" class="btn" id="btn-clear" title="Effacer le record">🗑️</button></h3>
+    <header>
+        <h1>Memory Game</h1>
 
-    <div>
-        <!-- Panneau victoire -->
-        <div id="win" class="hidden">
-            <div>
-                <div class="title">GAGNÉ !</div>
-                <div class="win-score">Ton score: <span id="final-score"></span> coups</div>
-                <div>
-                    <button type="button" class="btn" id="btn-again">Rejouer !</button>
-                </div>
-            </div>
+        <div class="scores">
+            <span>Hi-Score :</span>
+            <span id="hi-score">00</span>
+            <button type="button" id="btn-reset-score">🗑️</button>
         </div>
 
-        <!-- Table de jeu -->
-        <div id="deck"></div>
-    </div>
+        <div id="current-score">00</div>
+    </header>
 
+    <main>
+        <div id="deck">
+            <div class="card">
+                <!-- div.card-back+div.card-img -->
+                <div class="card-back"></div>
+                <div class="card-img" style="background-image:url('img/1.webp')"></div>
+            </div>
+            <div class="card">
+                <!-- div.card-back+div.card-img -->
+                <div class="card-back"></div>
+                <div class="card-img" style="background-image:url('img/2.webp')"></div>
+            </div>
+            <div class="card">
+                <!-- div.card-back+div.card-img -->
+                <div class="card-back"></div>
+                <div class="card-img" style="background-image:url('img/3.webp')"></div>
+            </div>
+            <div class="card">
+                <!-- div.card-back+div.card-img -->
+                <div class="card-back"></div>
+                <div class="card-img" style="background-image:url('img/4.webp')"></div>
+            </div>
+            <div class="card">
+                <!-- div.card-back+div.card-img -->
+                <div class="card-back"></div>
+                <div class="card-img" style="background-image:url('img/5.webp')"></div>
+            </div>
+            <div class="card">
+                <!-- div.card-back+div.card-img -->
+                <div class="card-back"></div>
+                <div class="card-img" style="background-image:url('img/6.webp')"></div>
+            </div>
+            <div class="card">
+                <!-- div.card-back+div.card-img -->
+                <div class="card-back"></div>
+                <div class="card-img" style="background-image:url('img/7.webp')"></div>
+            </div>
+            <div class="card">
+                <!-- div.card-back+div.card-img -->
+                <div class="card-back"></div>
+                <div class="card-img" style="background-image:url('img/8.webp')"></div>
+            </div>
+            <div class="card">
+                <!-- div.card-back+div.card-img -->
+                <div class="card-back"></div>
+                <div class="card-img" style="background-image:url('img/9.webp')"></div>
+            </div>
+            <div class="card">
+                <!-- div.card-back+div.card-img -->
+                <div class="card-back"></div>
+                <div class="card-img" style="background-image:url('img/10.webp')"></div>
+            </div>
+            <div class="card">
+                <!-- div.card-back+div.card-img -->
+                <div class="card-back"></div>
+                <div class="card-img" style="background-image:url('img/1.webp')"></div>
+            </div>
+            <div class="card">
+                <!-- div.card-back+div.card-img -->
+                <div class="card-back"></div>
+                <div class="card-img" style="background-image:url('img/2.webp')"></div>
+            </div>
+            <div class="card">
+                <!-- div.card-back+div.card-img -->
+                <div class="card-back"></div>
+                <div class="card-img" style="background-image:url('img/3.webp')"></div>
+            </div>
+            <div class="card">
+                <!-- div.card-back+div.card-img -->
+                <div class="card-back"></div>
+                <div class="card-img" style="background-image:url('img/4.webp')"></div>
+            </div>
+            <div class="card">
+                <!-- div.card-back+div.card-img -->
+                <div class="card-back"></div>
+                <div class="card-img" style="background-image:url('img/5.webp')"></div>
+            </div>
+            <div class="card">
+                <!-- div.card-back+div.card-img -->
+                <div class="card-back"></div>
+                <div class="card-img" style="background-image:url('img/6.webp')"></div>
+            </div>
+            <div class="card">
+                <!-- div.card-back+div.card-img -->
+                <div class="card-back"></div>
+                <div class="card-img" style="background-image:url('img/7.webp')"></div>
+            </div>
+            <div class="card">
+                <!-- div.card-back+div.card-img -->
+                <div class="card-back"></div>
+                <div class="card-img" style="background-image:url('img/8.webp')"></div>
+            </div>
+            <div class="card">
+                <!-- div.card-back+div.card-img -->
+                <div class="card-back"></div>
+                <div class="card-img" style="background-image:url('img/9.webp')"></div>
+            </div>
+            <div class="card">
+                <!-- div.card-back+div.card-img -->
+                <div class="card-back"></div>
+                <div class="card-img" style="background-image:url('img/10.webp')"></div>
+            </div>
+            <div class="card">
+                <!-- div.card-back+div.card-img -->
+                <div class="card-back"></div>
+                <div class="card-img" style="background-image:url('img/7.webp')"></div>
+            </div>
+            <div class="card">
+                <!-- div.card-back+div.card-img -->
+                <div class="card-back"></div>
+                <div class="card-img" style="background-image:url('img/8.webp')"></div>
+            </div>
+            <div class="card">
+                <!-- div.card-back+div.card-img -->
+                <div class="card-back"></div>
+                <div class="card-img" style="background-image:url('img/9.webp')"></div>
+            </div>
+            <div class="card">
+                <!-- div.card-back+div.card-img -->
+                <div class="card-back"></div>
+                <div class="card-img" style="background-image:url('img/10.webp')"></div>
+            </div>
+        </div>
+    </main>
+    
     <script src="script.js"></script>
 </body>
 </html>
