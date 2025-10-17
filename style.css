@@ -85,6 +85,11 @@ main {
     gap: 20px;
     margin-right: auto;
     margin-left: auto;
+    /* Perspective des transformations */
+    /* Distance en pixel entre le point d'origine (point de fuite) et l'oeil de l'observateur supposé*/
+    perspective: 800px;
+    /* position du point de fuite par rapport à #deck */
+    perspective-origin: 50% 30%;
     width: calc(
         ( 20px * ( var(--cards-per-row) - 1 ) ) /* Nombre gaps */
         + ( 2px * 2 * var(--cards-per-row) ) /* Total des borders */
@@ -99,6 +104,8 @@ main {
     /* coins arrondis */
     border-radius: 3px;
     position: relative;
+    /* animation de changement de carte*/
+    transition: transform .2s ease-in;
 }
 
     .card.flipped {
@@ -135,6 +142,7 @@ main {
     /* Espace entre bord gauche de l'élément et celui de son élément de référence */
     top: 0;
     transform: rotateY(.5turn);
+    transition: z-index .2s ease-in;
     z-index: 1;
 }
 
@@ -153,7 +161,7 @@ main {
 }
 
 /* - Écrans à partir de 1400px de large (desktop XXL) - */
-@media (min-width: 1400px) {
+@media (min-width: 1440px) {
     :root {
         --img-scale: 1;
         --cards-per-row: 8;
