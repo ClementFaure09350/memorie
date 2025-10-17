@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- Polices Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rubik+Distressed&display=swap" >
-    
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rubik+Distressed&display=swap">
+
     <link rel="stylesheet" href="style.css">
 
     <title>Memory Game</title>
 </head>
+
 <body>
     <header>
         <h1>Memory Game</h1>
@@ -149,8 +152,18 @@
                 <div class="card-img" style="background-image:url('img/10.webp')"></div>
             </div>
         </div>
+
+        <!-- Fentetre modale de la victoire -->
+        <div class="modal-overlay hidden">
+            <div class="modal">
+                <div class="h1">Victoire !</div>
+                <div id="final-score">00</div>
+                <button type="button" id="btn-play-again" class="btn">Rejouer</button>
+            </div>
+        </div>
     </main>
-    
+
     <script src="script.js"></script>
 </body>
+
 </html>
