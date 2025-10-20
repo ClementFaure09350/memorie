@@ -22,142 +22,21 @@
 
         <div class="scores">
             <span>Hi-Score :</span>
-            <span id="hi-score">00</span>
+            <span id="hi-score">Aucun</span>
             <button type="button" id="btn-reset-score" class="btn">🗑️</button>
         </div>
 
-        <div id="current-score">00</div>
+        <div id="current-score">0</div>
     </header>
 
     <main>
-        <div id="deck">
-            <div class="card">
-                <!-- div.card-back+div.card-img -->
-                <div class="card-back"></div>
-                <div class="card-img" style="background-image:url('img/1.webp')"></div>
-            </div>
-            <div class="card">
-                <!-- div.card-back+div.card-img -->
-                <div class="card-back"></div>
-                <div class="card-img" style="background-image:url('img/2.webp')"></div>
-            </div>
-            <div class="card">
-                <!-- div.card-back+div.card-img -->
-                <div class="card-back"></div>
-                <div class="card-img" style="background-image:url('img/3.webp')"></div>
-            </div>
-            <div class="card">
-                <!-- div.card-back+div.card-img -->
-                <div class="card-back"></div>
-                <div class="card-img" style="background-image:url('img/4.webp')"></div>
-            </div>
-            <div class="card">
-                <!-- div.card-back+div.card-img -->
-                <div class="card-back"></div>
-                <div class="card-img" style="background-image:url('img/5.webp')"></div>
-            </div>
-            <div class="card">
-                <!-- div.card-back+div.card-img -->
-                <div class="card-back"></div>
-                <div class="card-img" style="background-image:url('img/6.webp')"></div>
-            </div>
-            <div class="card">
-                <!-- div.card-back+div.card-img -->
-                <div class="card-back"></div>
-                <div class="card-img" style="background-image:url('img/7.webp')"></div>
-            </div>
-            <div class="card">
-                <!-- div.card-back+div.card-img -->
-                <div class="card-back"></div>
-                <div class="card-img" style="background-image:url('img/8.webp')"></div>
-            </div>
-            <div class="card">
-                <!-- div.card-back+div.card-img -->
-                <div class="card-back"></div>
-                <div class="card-img" style="background-image:url('img/9.webp')"></div>
-            </div>
-            <div class="card">
-                <!-- div.card-back+div.card-img -->
-                <div class="card-back"></div>
-                <div class="card-img" style="background-image:url('img/10.webp')"></div>
-            </div>
-            <div class="card">
-                <!-- div.card-back+div.card-img -->
-                <div class="card-back"></div>
-                <div class="card-img" style="background-image:url('img/1.webp')"></div>
-            </div>
-            <div class="card">
-                <!-- div.card-back+div.card-img -->
-                <div class="card-back"></div>
-                <div class="card-img" style="background-image:url('img/2.webp')"></div>
-            </div>
-            <div class="card">
-                <!-- div.card-back+div.card-img -->
-                <div class="card-back"></div>
-                <div class="card-img" style="background-image:url('img/3.webp')"></div>
-            </div>
-            <div class="card">
-                <!-- div.card-back+div.card-img -->
-                <div class="card-back"></div>
-                <div class="card-img" style="background-image:url('img/4.webp')"></div>
-            </div>
-            <div class="card">
-                <!-- div.card-back+div.card-img -->
-                <div class="card-back"></div>
-                <div class="card-img" style="background-image:url('img/5.webp')"></div>
-            </div>
-            <div class="card">
-                <!-- div.card-back+div.card-img -->
-                <div class="card-back"></div>
-                <div class="card-img" style="background-image:url('img/6.webp')"></div>
-            </div>
-            <div class="card">
-                <!-- div.card-back+div.card-img -->
-                <div class="card-back"></div>
-                <div class="card-img" style="background-image:url('img/7.webp')"></div>
-            </div>
-            <div class="card">
-                <!-- div.card-back+div.card-img -->
-                <div class="card-back"></div>
-                <div class="card-img" style="background-image:url('img/8.webp')"></div>
-            </div>
-            <div class="card">
-                <!-- div.card-back+div.card-img -->
-                <div class="card-back"></div>
-                <div class="card-img" style="background-image:url('img/9.webp')"></div>
-            </div>
-            <div class="card">
-                <!-- div.card-back+div.card-img -->
-                <div class="card-back"></div>
-                <div class="card-img" style="background-image:url('img/10.webp')"></div>
-            </div>
-            <div class="card">
-                <!-- div.card-back+div.card-img -->
-                <div class="card-back"></div>
-                <div class="card-img" style="background-image:url('img/7.webp')"></div>
-            </div>
-            <div class="card">
-                <!-- div.card-back+div.card-img -->
-                <div class="card-back"></div>
-                <div class="card-img" style="background-image:url('img/8.webp')"></div>
-            </div>
-            <div class="card">
-                <!-- div.card-back+div.card-img -->
-                <div class="card-back"></div>
-                <div class="card-img" style="background-image:url('img/9.webp')"></div>
-            </div>
-            <div class="card">
-                <!-- div.card-back+div.card-img -->
-                <div class="card-back"></div>
-                <div class="card-img" style="background-image:url('img/10.webp')"></div>
-            </div>
-        </div>
+        <div id="deck"></div>
 
         <!-- Fentetre modale de la victoire -->
         <div class="modal-overlay hidden">
             <div class="modal">
                 <div class="h1">Victoire !</div>
-                <div id="final-score">00</div>
+                <div id="final-score"></div>
                 <button type="button" id="btn-play-again" class="btn">Rejouer</button>
             </div>
         </div>
