@@ -1,11 +1,4 @@
 console.log('Ça marche !');
-/*
-<div class="card">
-                <!-- div.card-back+div.card-img -->
-                <div class="card-back"></div>
-                <div class="card-img" style="background-image:url('img/8.webp')"></div>
-            </div>
-*/
 
 
 function handlerDomContentLoaded() {
@@ -30,9 +23,11 @@ function handlerDomContentLoaded() {
         MACHIN = 56;
     */
 
-    // Etape de demarrage
-    // TODO: Recuperation et affichage du hi-score
-    // TODO: Implementer les clicks sur les boutons fixes: elHiScore, elBtnPlayAgain
+    //variables de fonctionnement du jeu
+    let arrNumCards = [];
+
+
+    // Etapes de demarrage
 
     //ecouteur de click sur le bouton de remise a zero du hi-score
     elBtnResetScore.addEventListener(`click`, function () {
@@ -42,22 +37,98 @@ function handlerDomContentLoaded() {
         elHiScore.textContent = `Aucun`;
     });
 
+    //Ecouteur de click
+    elBtnPlayAgain.addEventListener(`click`, function () {
+        //effacer le hi-score de la mamoire
+
+        //on cache la modale de victoire
+        elModalWin.classList.add(`hidden`);
+
+        //on reinitialise le jeu
+        initGame()
+    })
+
+    //fonction utilitaire de melange de tableau
+    function shuffleArray(arr) {
+        // on recupere l'index max de arr
+        let idMax = arr.length - 1;
+
+        //boucle de lecture inverser du tableau
+        while (idMax > 0) {
+            //generation d'un index aleatoire de 0 a (idMax - 1)
+            let idRandom = Math.floor(Math.random() * idMax);
+
+            //on recupere les valeurs associees aux 2 indices
+            let valueAtMax = arr[idMax];
+            let valueAtRandom = arr[idRandom];
+
+            //on echange les places des 2 valeurs dans le tableau
+            arr[idMax] = valueAtRandom;
+            arr[idRandom] = valueAtMax;
+
+            //forme courte, moins lisible
+            //on donne a gauche une liste de position dans le tableau
+            //et a droite la liste des valeur dans le meme ordre a associer
+            //[ arr[idMax], arr[idRandom] ] = [ valueAtRandom, valueAtMax ];
+
+            //on decremente l'idMax avec lequel on travail
+            idMax--;
+        }
+    }
+
+    //generation du DOM d'une carte
+    function getCardDom(numCard) {
+        /*
+        <div class="card">
+                <div class="card-back"></div>
+                <div class="card-img" style="background-image:url('img/[numCard].webp')"></div>
+            </div>
+        */
+        const elCard = document.createElement(`div`);
+        elCard.classList.add(`card`);
+
+//on fabrique l'interieur de elCard
+        let cardInnerHTML = `<div class="card-back"></div>`; 
+        cardInnerHTML += `<div class="card-img" style="background-image:url('img/${numCard}.webp')"></div>`;
+        elCard.innerHTML = cardInnerHTML;
+
+        //TODO: temporaire, event listener pour le clic de la carte
+        elCard.addEventListener( `click`, function(){
+            elCard.classList.toggle(`flipped`);
+        });
+
+        return elCard;
+    }
+
     // creer une fonction pour reinitialiser l'interface graphique 
     function initGame() {
         console.log("Initialisation du jeu");
+        //remise a zero du current score
+        elCurrentScore.textContent = 0;
 
-        //Ecouteur de click
-        elBtnPlayAgain.addEventListener(`click`, function () {
-            //effacer le hi-score de la mamoire
+        //remise a zero du final score
+        elFinalScore.textContent = ``;
 
-            //on cache la modale de victoire
-            elModalWin.classList.add(`hidden`);
+        //vidange du deck
+        elDeck.innerHTML = ``;
 
-            //on reinitialise le jeu
-            initGame()
-        })
+        //generation aleatoire d'une liste de nombres en double
+        for (let i = 1; i <= 12; i++) {
+            //on ajoute deux fois i ala fin du tableau
+            arrNumCards.push(i, i);
+        }
+        //liste avant melange
+        console.log(arrNumCards)
 
+        //on melange les cartes
+        shuffleArray(arrNumCards);
+        //liste apres melange
+        console.log(arrNumCards);
 
+        //on parcours la liste pour fabriquer les cartes et les afficher
+        //TODO: test a remplacer par la boucle
+        let uneCarte = getCardDom(5);
+        elDeck.append(uneCarte);
 
     }
 
