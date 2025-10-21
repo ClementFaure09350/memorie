@@ -37,17 +37,32 @@ function handlerDomContentLoaded() {
         arrFlipped: [], // liste temporaire des cartes retournees pendant une tentative
         canPlay: true, // flag qui empeche 
         tries: 0,// flag qui empeche  // nombre de tentative de la partie en court
+        hiScore: 0, //hi-score actuel: 0 signifiera qu'il n'y en a pas encore
         timer: null //timer de retournement des cartes non matchéés
     };
 
 
     // Etapes de demarrage
+    //recuperation de l'affichage du hi-score
+    const storedHiScore = localStorage.getItem( 'memory-game-hiscore' );
+    //s'il n'en existe pas on le cree dans le stockage du navigateur
+    if(storedData === null) {
+        localStorage.setItem( 'memory-game-hiscore', gameState.hiScore )
+        //sinon on met a jour le gameState
+    }else {
+gameState.hiScore = parseInt(storedHiScore, 10 );
+    }
+
+    //afficher le hi-score
+    elHiScore.textContent = gameState.hiScore > 0 ? gameState.hiScore : 'aucun';
 
     //ecouteur de click sur le bouton de remise a zero du hi-score
     elBtnResetScore.addEventListener(`click`, function () {
-        // TODO: effacer le hi-score de la memoire
 
-        // on reinitialise l'affichage
+        //effacer le hi-score de la memoire
+        localStorage.removeItem('memory-game-hiscore');
+
+ // on reinitialise l'affichage
         elHiScore.textContent = `Aucun`;
     });
 
