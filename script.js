@@ -87,13 +87,13 @@ function handlerDomContentLoaded() {
         const elCard = document.createElement(`div`);
         elCard.classList.add(`card`);
 
-//on fabrique l'interieur de elCard
-        let cardInnerHTML = `<div class="card-back"></div>`; 
+        //on fabrique l'interieur de elCard
+        let cardInnerHTML = `<div class="card-back"></div>`;
         cardInnerHTML += `<div class="card-img" style="background-image:url('img/${numCard}.webp')"></div>`;
         elCard.innerHTML = cardInnerHTML;
 
         //TODO: temporaire, event listener pour le clic de la carte
-        elCard.addEventListener( `click`, function(){
+        elCard.addEventListener(`click`, function () {
             elCard.classList.toggle(`flipped`);
         });
 
@@ -126,14 +126,29 @@ function handlerDomContentLoaded() {
         console.log(arrNumCards);
 
         //on parcours la liste pour fabriquer les cartes et les afficher
-        //TODO: test a remplacer par la boucle
-        let uneCarte = getCardDom(5);
-        elDeck.append(uneCarte);
+
+        //Boucle pour parcourir un tableau => for( ... ; ... ; ... )
+        // for(let i = 0; i < arrNumCards.length; i ++){
+        //    console.log( arrNumCards[i] );
+        //}
+        //Boucle pour parcourir un tableau dans son integralite => for( ... in ... )
+        //for (let i in arrNumCards) {
+        //    console.log(arrNumCards[i]);
+        //}
+        //boucle pour parcourir un tableau dans son integralite => Array.forEach()
+        //arrNumCards.forEach((numCard) => { console.log(numCard); });
+
+        //Boucle pour parcourir un tableau dans son integralite => for( ... of ... )
+        for (let numCard of arrNumCards) {
+            const elCard = getCardDom(numCard);
+            elDeck.append(elCard);
+        }
 
     }
-
+    
     // initialisation du jeu
     initGame();
+
 
 }
 
