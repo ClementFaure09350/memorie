@@ -40,7 +40,7 @@ body {
 
 .hidden {
     /* Annule l'affichage, l'important empeche qu'on reprenne le dessus */
-    display: none!important;
+    display: none !important;
 }
 
 /* Tous les <h1>, et les <element class="h1" */
@@ -63,6 +63,11 @@ header,
     /* Gére la gouttière (espace de séparation) entre les "enfants flex" */
     gap: 10px;
     padding: 20px;
+}
+
+/* Indicateur de theme actif*/
+.theme-indicator {
+    font-size: .5em;
 }
 
 /* Bouton avec la classe "btn" */
@@ -124,6 +129,7 @@ main {
 }
 
 /* -- Cartes -- */
+/* Espace entre le bord bas du bouton et le bord bas de l'element de reference du positionnement */
 .card {
     /* bordures */
     border: 2px solid rgb(142, 9, 219);
@@ -173,10 +179,21 @@ main {
 }
 
 .card.flipped .card-img {
+    /* Espace entre le bord bas du bouton et le bord bas de l'element de reference du positionnement */
     z-index: 3;
 }
 
-/* ---- Modale de victoire---- */
+
+/* ---- Modale ---- */
+
+/* Bouton reglage*/
+#btn-settings {
+    /* Espace entre le bord bas du bouton et le bord bas de l'element de reference du positionnement */
+    bottom: 20px;
+    position: fixed;
+    right: 20px;
+}
+
 .modal-overlay {
     align-items: center;
     background-color: rgba(0, 0, 0, .7);

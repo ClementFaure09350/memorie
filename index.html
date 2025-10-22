@@ -18,7 +18,10 @@
 
 <body>
     <header>
-        <h1>Memory Game</h1>
+        <!-- Indicateur du theme actif -->
+        <div class="theme-indicator">Theme : <span id="current-theme">Par défaut</span></div>
+
+        <h1><span id="mode-icon">😉</span>Memory Game</h1>
 
         <div class="scores">
             <span>Hi-Score :</span>
@@ -32,6 +35,7 @@
     <main>
         <div id="deck"></div>
 
+
         <!-- Fentetre modale de la victoire -->
         <div id="modal-win" class="modal-overlay hidden">
             <div class="modal">
@@ -40,6 +44,36 @@
                 <button type="button" id="btn-play-again" class="btn">Rejouer</button>
             </div>
         </div>
+
+        <!-- Bouton de reglages -->
+        <button type="button" id="btn-settings" class="btn">⚙️</button>
+
+        <!-- Fentetre modale des reglages -->
+        <div id="modal-settings" class="modal-overlay hidden">
+            <div class="modal">
+                <div class="h1">Reglages</div>
+
+                <div><label for="select-mode">Difficulté</label>
+                    <select id="slect-mode">
+                        <option value="6">🐟 Dory</option>
+                        <option value="9" selected>😉 Normal</option>
+                        <option value="12">🧠 Megamind</option>
+                    </select>
+                </div>
+                <div><label for="select-theme">Thème</label>
+                    <select id="slect-theme">
+                        <option value="default" selected>Pardéfaut</option>
+                    </select>
+                </div>
+
+                <div>
+                    <button type="button" id="btn-settings-cancel" class="btn">Annuler</button>
+                    <button type="button" id="btn-settings-ok" class="btn">Ok</button>
+                </div>
+            </div>
+        </div>
+
+
     </main>
     <script src="config.js"></script>
     <script src="script.js"></script>
