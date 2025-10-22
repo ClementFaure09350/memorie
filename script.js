@@ -25,12 +25,9 @@ function handlerDomContentLoaded() {
 
     //variables de fonctionnement du jeu
     let arrNumCards = [];
+    //reglage du jeu => dans config.js
+    //variable game.config
 
-    //reglage du jeu
-    const gameConfig = {
-        distinctCards: 12, // nombre d'image differente
-        timerDelay: 1000, // duree d'affichage des paires non marque
-    }
     // objet litteral qui contient les infos de l'etat actuel de la partie
     const gameState = {
         arrFound: [], // liste des numeros deja decouvert
