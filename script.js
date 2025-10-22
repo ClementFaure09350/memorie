@@ -29,7 +29,7 @@ function handlerDomContentLoaded() {
     //reglage du jeu
     const gameConfig = {
         distinctCards: 12, // nombre d'image differente
-        timerDelay : 1000, // duree d'affichage des paires non marque
+        timerDelay: 1000, // duree d'affichage des paires non marque
     }
     // objet litteral qui contient les infos de l'etat actuel de la partie
     const gameState = {
@@ -44,17 +44,15 @@ function handlerDomContentLoaded() {
 
     // Etapes de demarrage
     //recuperation de l'affichage du hi-score
-    const storedHiScore = localStorage.getItem( 'memory-game-hiscore' );
+    const storedHiScore = localStorage.getItem('memory-game-hiscore');
     //s'il n'en existe pas on le cree dans le stockage du navigateur
-    if(storedData === null) {
-        localStorage.setItem( 'memory-game-hiscore', gameState.hiScore )
+    if (storedHiScore === null) {
+        localStorage.setItem('memory-game-hiscore', gameState.hiScore)
         //sinon on met a jour le gameState
-    }else {
-gameState.hiScore = parseInt(storedHiScore, 10 );
+    } else {
+        gameState.hiScore = parseInt(storedHiScore, 10);
     }
 
-    //afficher le hi-score
-    elHiScore.textContent = gameState.hiScore > 0 ? gameState.hiScore : 'aucun';
 
     //ecouteur de click sur le bouton de remise a zero du hi-score
     elBtnResetScore.addEventListener(`click`, function () {
@@ -62,7 +60,7 @@ gameState.hiScore = parseInt(storedHiScore, 10 );
         //effacer le hi-score de la memoire
         localStorage.removeItem('memory-game-hiscore');
 
- // on reinitialise l'affichage
+        // on reinitialise l'affichage
         elHiScore.textContent = `Aucun`;
     });
 
@@ -117,6 +115,7 @@ gameState.hiScore = parseInt(storedHiScore, 10 );
         elCard.classList.add(`card`);
         elCard.dataset.numCard = numCard;
 
+
         //on fabrique l'interieur de elCard
         let cardInnerHTML = `<div class="card-back"></div>`;
         cardInnerHTML += `<div class="card-img" style="background-image:url('img/${numCard}.webp')"></div>`;
@@ -128,6 +127,7 @@ gameState.hiScore = parseInt(storedHiScore, 10 );
 
         return elCard;
     }
+
 
     // creer une fonction pour reinitialiser l'interface graphique 
     function initGame() {
@@ -146,6 +146,9 @@ gameState.hiScore = parseInt(storedHiScore, 10 );
         arrNumCards = [];
         //vidange du deck
         elDeck.innerHTML = ``;
+
+        //afficher le hi-score
+        elHiScore.textContent = gameState.hiScore > 0 ? gameState.hiScore : 'aucun';
 
         //generation aleatoire d'une liste de nombres en double
         for (let i = 1; i <= gameConfig.distinctCards; i++) {
@@ -237,6 +240,20 @@ gameState.hiScore = parseInt(storedHiScore, 10 );
             elFinalScore.textContent = gameState.tries;
             //on affiche la modal
             elModalWin.classList.remove('hidden');
+
+            //gestion du hi-score
+            //sur un test avec, on met d'abord le cas le plus frequent car s'il est vrai
+            //l' autre test ne sera pas evalue car il n'aua aucun effet sur le resultat final
+            //cela permet d'economiser le traitement inutile d'une comparaison
+            //si aucun hi-score ou que le nombre de tentatives est meilleur que hi-score
+            // => enregistrement du hi-score
+            if (gameState.tries < gameState.hiScore || gameState.hiScore <= 0) {
+                //on met a jour le gameState
+                gameState.hiScore = gameState.tries;
+                // on enregistre le nouveau score dans localStorage
+                localStorage.setItem( 'memory-game-hiscore', gameState.hiScore );
+            }
+
             return;
 
         };
@@ -250,9 +267,9 @@ gameState.hiScore = parseInt(storedHiScore, 10 );
         //on lance un timer qui remet les cartes en plac au bout d'un temps defini
         // dans une fonction fleche, la convention dit que un argument seul qui est
         //a coup sur "undefined" doit etre nomme "_"
-        gameState.timer = setTimeout( _ => {
+        gameState.timer = setTimeout(_ => {
             //pour chaque carte retournee sur cette tentative
-            for( let elCard of gameState.arrFlipped ){
+            for (let elCard of gameState.arrFlipped) {
                 elCard.classList.remove('flipped');
             }
 
@@ -262,7 +279,7 @@ gameState.hiScore = parseInt(storedHiScore, 10 );
             //on reinitialise la liste des carte
             gameState.arrFlipped = [];
 
-        }, gameConfig.timerDelay );
+        }, gameConfig.timerDelay);
 
     }
 
