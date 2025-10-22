@@ -13,6 +13,12 @@ function handlerDomContentLoaded() {
     const elFinalScore = document.getElementById(`final-score`);
     const elModalWin = document.getElementById(`modal-win`);
     const elBtnPlayAgain = document.getElementById(`btn-play-again`);
+    const elModalSettings = document.getElementById(`modal-settings`);
+    const elBtnSettings = document.getElementById(`btn-settings`);
+    const elBtnCancel = document.getElementById(`btn-settings-cancel`)
+    const elBtnOk = document.getElementById(`btn-settings-ok`)
+    const elDifficulty = document.getElementById(`select-mode`)
+    const elDifficultyIndicator = document.getElementById(`mode-icon`)
 
     /* on peut declarer plusieur constante avec le meme "const"
     EX: const TOTO = 5, TRUC =10, MACHIN = 56;
@@ -35,8 +41,15 @@ function handlerDomContentLoaded() {
         canPlay: true, // flag qui empeche 
         tries: 0,// flag qui empeche  // nombre de tentative de la partie en court
         hiScore: 0, //hi-score actuel: 0 signifiera qu'il n'y en a pas encore
-        timer: null //timer de retournement des cartes non matchéés
+        timer: null, //timer de retournement des cartes non matchéés
+        theme: "default", //theme actuel
     };
+
+    const emojis = {
+        "6": "🐟",
+        "9": "😉",
+        "12": "🧠",
+    }
 
 
     // Etapes de demarrage
@@ -71,6 +84,25 @@ function handlerDomContentLoaded() {
         //on reinitialise le jeu
         initGame()
     })
+
+    //ecouteur de click des settings
+    elBtnSettings.addEventListener(`click`, function () {
+        elModalSettings.classList.remove(`hidden`)
+    });
+
+    elBtnCancel.addEventListener(`click`, function () {
+        elModalSettings.classList.add(`hidden`)
+    });
+
+    elBtnOk.addEventListener(`click`, function () {
+        nbParLevel = parseInt(elDifficulty.value, 10);
+        gameConfig.distinctCards = nbParLevel;
+
+        elDifficultyIndicator.textContent = emojis[elDifficulty.value];
+
+        elModalSettings.classList.add(`hidden`)
+        initGame()
+    });
 
     //fonction utilitaire de melange de tableau
     function shuffleArray(arr) {
@@ -114,8 +146,8 @@ function handlerDomContentLoaded() {
 
 
         //on fabrique l'interieur de elCard
-        let cardInnerHTML = `<div class="card-back"></div>`;
-        cardInnerHTML += `<div class="card-img" style="background-image:url('img/${numCard}.webp')"></div>`;
+        let cardInnerHTML = `<div class="card-back" style="background-image:url('./themes/${gameState.theme}/img/back.webp')"></div>`;
+        cardInnerHTML += `<div class="card-img" style="background-image:url('./themes/${gameState.theme}/img/${numCard}.webp')"></div>`;
         elCard.innerHTML = cardInnerHTML;
 
         //event listener pour le clic de la carte
@@ -248,7 +280,7 @@ function handlerDomContentLoaded() {
                 //on met a jour le gameState
                 gameState.hiScore = gameState.tries;
                 // on enregistre le nouveau score dans localStorage
-                localStorage.setItem( 'memory-game-hiscore', gameState.hiScore );
+                localStorage.setItem('memory-game-hiscore', gameState.hiScore);
             }
 
             return;
